@@ -10,7 +10,7 @@ export default function Footer() {
           <div className="p-3">
             <ul className="list-unstyled">
               <p className="text-dark font-weight-bold h3 pb-4">
-                <img src="/movielogo.png" alt="Logo" style={{ height: '100px' }} />
+                <img src="/logo.png" alt="Logo" style={{ height: '100px' }} />
               </p>
               <div className="d-flex gap-3 pb-4">
                 <FaInstagram className="h4 cursor-pointer text-secondary hover-text-warning" />
