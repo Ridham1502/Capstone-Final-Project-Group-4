@@ -4,7 +4,7 @@ import Footer from './components/footer/Footer';
 import Navbar from './components/navbar/Navbar';
 //import Home from './components/HomePage/HomePage';
 import MovieDetails from './components/MovieDetails/MovieDetails';
-import AdminPge from './components/AdminPage/Admin';
+import AdminPge from './components/AdminPage/AdminPage';
 
 function App() {
   return (
