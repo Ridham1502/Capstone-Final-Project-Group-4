@@ -19,7 +19,7 @@ function App() {
           {/* <Route path="/events" element={<Events />} /> */}
           {/* <Route path="/activities" element={<Activities />} /> */}
           {/* <Route path="/sports" element={<Sports />} /> */}
-           <Route path="/about" element={<AdminPage />} /> 
+           <Route path="/admin" element={<AdminPage />} /> 
         </Routes> {/* Close <Routes> */}
         <Footer/>
       </div>
