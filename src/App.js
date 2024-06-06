@@ -8,7 +8,7 @@ import LoginPage from './components/LoginPage/LoginPage';
 
 import MovieDetails from './components/MovieDetails/MovieDetails';
 import AdminPage from './components/AdminPage/AdminPage';
-
+// nefjeqfjqwoifj
 function App() {
   return (
     <Router>
@@ -17,7 +17,6 @@ function App() {
         <Routes> {/* Replace <Route> with <Routes> */}
            <Route path="/" element={<RegisterLogin />} />
           <Route path="/login" element={<LoginPage />} />
-          // <Route path="/" element={<AdminPage />} />
           <Route path="/movies" element={<MovieDetails />} />
           {/* <Route path="/events" element={<Events />} /> */}
           {/* <Route path="/activities" element={<Activities />} /> */}
