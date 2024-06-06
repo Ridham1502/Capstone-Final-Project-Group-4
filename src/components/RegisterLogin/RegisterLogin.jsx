@@ -6,6 +6,7 @@ import userIcon from '../Assets/user.png';
 import emailIcon from '../Assets/email.png';
 import passwordIcon from '../Assets/password.png';
 import confirmIcon from '../Assets/confirm.jpeg';
+import logo from '../Assets/logo.jpg'; 
 
 const RegisterLogin = () => {
   const navigate = useNavigate();
@@ -18,6 +19,9 @@ const RegisterLogin = () => {
 
   return (
     <div className='container'>
+      <div className="logo">
+        <img src={logo} alt="Cultural Canvas Logo" />
+      </div>
       <div className="header">
         <div className="text">Register</div>
         <div className="underline"></div>
