@@ -29,9 +29,7 @@ export default function MovieDetails() {
           >
             <h1 className="h4 font-weight-bold mb-3">Movie Name</h1>
             <p className="text-secondary mb-4">
-              Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit
-              aut fugit, sed quia consequuntur magni dolores eos qui ratione
-              voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem.
+              Brie Larson as Carol Danvers / Vers / Captain Marvel: An ex-U.S. Air Force fighter pilot and member of an elite Kree military unit called Starforce. She was imbued with superhuman strength, energy projection, and flight after exposure to Tesseract energy.
             </p>
             <button className="btn btn-primary btn-sm align-self-start mt-3">
               Book Tickets
