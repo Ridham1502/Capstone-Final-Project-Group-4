@@ -5,7 +5,7 @@ export default function Navbar() {
   return (
     <div className="navbar">
       <div className="navbar-logo">
-        <img src="/movielogo.png" alt="Logo" />
+        <img src="/logo.jpg" alt="Logo" />
       </div>
       <div className="navbar-links">
         <a href="#movies">Movies</a>
