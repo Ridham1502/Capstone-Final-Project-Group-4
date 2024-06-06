@@ -4,7 +4,7 @@ import Footer from './components/footer/Footer';
 import Navbar from './components/navbar/Navbar';
 //import Home from './components/HomePage/HomePage';
 import MovieDetails from './components/MovieDetails/MovieDetails';
-//import HomePage from './components/HomePage/HomePage';
+import HomePage from './components/HomePage/HomePage';
 
 function App() {
   return (
@@ -12,7 +12,7 @@ function App() {
       <div>
         <Navbar/>
         <Routes> {/* Replace <Route> with <Routes> */}
-          <Route path="/" element={<MovieDetails />} />
+          <Route path="/" element={<HomePage />} />
           <Route path="/movies" element={<MovieDetails />} />
           {/* <Route path="/events" element={<Events />} /> */}
           {/* <Route path="/activities" element={<Activities />} /> */}
