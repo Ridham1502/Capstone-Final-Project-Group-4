@@ -98,8 +98,7 @@ export default function MovieDetails() {
           <div className="d-flex">
             <div className="flex-fill mr-4">
               <p className="text-secondary mb-3">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                Captain Marvel was just amazing I loved it the humour and entertainment. I say the plot of the film was well set up showing how carol got her powers and I would rate this film 9 out of 10.
               </p>
               <div className="d-flex align-items-center">
                 <div
