@@ -2,7 +2,6 @@ import './App.css';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Footer from './components/footer/Footer';
 import Navbar from './components/navbar/Navbar';
-//import Home from './components/HomePage/HomePage';
 import MovieDetails from './components/MovieDetails/MovieDetails';
 import AdminPage from './components/AdminPage/AdminPage';
 
