@@ -12,7 +12,7 @@ export default function Navbar() {
         <a href="#events">Events</a>
         <a href="#activities">Activities</a>
         <a href="#sports">Sports</a>
-        <a href="#about">About Us</a>
+        <a href="#admin">Admin</a>
         <div className="dropdown">
           <button className="dropbtn">Canada</button>
           <div className="dropdown-content">
