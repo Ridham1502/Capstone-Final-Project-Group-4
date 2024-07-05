@@ -1,0 +1,181 @@
+.add-movie-container {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.most-watched-section {
+  margin-bottom: 20px;
+}
+.container {
+  max-width: 72rem;
+  margin: 0 auto;
+  padding: 2rem;
+}
+.most-watched-movies {
+  display: flex;
+  gap: 20px;
+  justify-content: space-between; 
+}
+
+.movie-card {
+  background: #f5f5f5;
+  border-radius: 8px;
+  padding: 10px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  flex: 1; /* Ensures the cards take up equal space */
+}
+
+.movie-card img {
+  width: 100%;
+  height: 500px; /* Set a fixed height */
+  object-fit: contain;
+  border-radius: 4px;
+}
+
+.movie-details {
+  margin-top: 10px;
+}
+
+.add-movie-section {
+  margin-bottom: 20px;
+  text-align: right;
+}
+
+.add-movie-button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.add-movie-button:hover {
+  background-color: #0056b3;
+}
+
+.modal {
+  position: fixed;
+  top: 10%;
+  left: 20%;
+  width: 60%;
+  height: 80%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 0.3s ease;
+  overflow-y: auto;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 1.5em;
+  cursor: pointer;
+}
+
+.form-row {
+  display: flex;
+  gap: 20px;
+}
+
+.form-group {
+  flex: 1;
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-family: inherit;
+  font-size: 1em;
+}
+
+button[type="submit"] {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 1em;
+}
+
+button[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+.movie-list-section {
+  margin-top: 20px;
+}
+
+.movie-list-section table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.movie-list-section table th,
+.movie-list-section table td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: left;
+}
+
+.movie-list-section table th {
+  background-color: #f4f4f4;
+}
+
+.movie-list-section table .movie-image {
+  max-width: 100px;
+  border-radius: 4px;
+}
+
+.action-button {
+  padding: 5px 10px;
+  margin-right: 5px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.action-button:hover {
+  background-color: #0056b3;
+}
