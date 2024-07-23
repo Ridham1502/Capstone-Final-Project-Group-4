@@ -26,8 +26,7 @@ const UserSchema = new mongoose.Schema(
         },
         phone_number: {
             type: String,
-            unique: true,
-            required: true
+            default: "99999999999",
         },
         bio: {
             type: String
@@ -42,9 +41,37 @@ const UserSchema = new mongoose.Schema(
         },
         role: {
             type: String,
+            default: 'user',
             enum: ["user"],
             required: true
         },
+        address: {
+            type: String
+        },
+        genres: {
+            type: String
+        },
+        language: {
+            type: String
+        },
+        favourateEvent: {
+            type: String
+        },
+        city: {
+            type: String
+        },
+        state: {
+            type: String
+        },
+        country: {
+            type: String
+        },
+        postalcode: {
+            type: String
+        },
+        favourateMovie: {
+            type: String
+        }
         
     },
     {
@@ -93,3 +120,4 @@ UserSchema.methods.comparePassword = function (passwordAttempt, cb) {
 UserSchema.plugin(mongoosePaginate);
 
 module.exports = mongoose.model("users", UserSchema);
+
