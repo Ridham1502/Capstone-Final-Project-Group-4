@@ -33,7 +33,7 @@ const movieSchema = new Schema({
         eventDate: { type: Date },
         eventLocation: { type: String },
         eventDescription: { type: String }
-        // Add more fields as needed for your events
+        
     }]
 });
 
