@@ -76,12 +76,9 @@ const hash = (user, salt, next) => {
 };
 
 const genSalt = (user, SALT_FACTOR, next) => {
-    bcrypt.genSalt(SALT_FACTOR, (err, salt) => {
-        if (err) {
-            return next(err);
-        }
-        return hash(user, salt, next);
-    });
+    bcrypt.genSalt(SALT_FACTOR)
+        .then(salt => hash(user, salt, next))
+        .catch(err => next(err));
 };
 
 
