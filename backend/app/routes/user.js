@@ -10,12 +10,6 @@ const trimRequest = require('trim-request')
 const authorize = require('../middlewares/authorize');
 
 
-
-
-
-
-
-
 router.get(
     '/test',
     controller.test
@@ -49,5 +43,29 @@ router.get(
     // authorize('user'),
     controller.getProfile
 )
+
+router.get(
+    '/listMovie',
+    controller.listMovie
+)
+
+
+router.get(
+    '/listEvents',
+    controller.listEvents
+)
+
+router.get(
+    '/getMovieDetails',
+    controller.getMovieDetails
+)
+
+
+router.put(
+    '/profileUpdate',
+    requireAuth,
+    controller.profileUpdate
+)
+
 
 module.exports = router
