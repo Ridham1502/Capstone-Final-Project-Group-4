@@ -1,21 +1,13 @@
 const path = require('path')
-const {
-    uploadFileToLocal
-} = require("../utils/helpers");
-
 const absolutePath = path.join(__dirname, '../../public/');
-
 const utils = require('../utils/utils')
 const jwt = require("jsonwebtoken")
 const { default: mongoose } = require('mongoose');
-
-
-
-
+const Movies = require('../models/movie')
 const OTP = require('../models/otp')
 const User = require('../models/user')
 
-
+// ------------------------------------------------------------------------
 
 
 exports.test = async (req, res) => {
@@ -78,26 +70,6 @@ const saveUserAccessAndReturnToken = async (req, user) => {
     })
 }
 
-exports.checkPhoneNumberExist = async (req, res) => {
-    try {
-        const { phone_number } = req.body;
-        const doesPhoneNumberExist = await emailer.checkMobileExists(phone_number);
-        res.json({ data: doesPhoneNumberExist, code: 200 })
-    } catch (error) {
-        utils.handleError(res, error);
-    }
-}
-
-
-exports.checkEmailExist = async (req, res) => {
-    try {
-        const { email } = req.body;
-        const doesEmailExists = await emailer.emailExists(email);
-        res.json({ data: doesEmailExists, code: 200 })
-    } catch (error) {
-        utils.handleError(res, error);
-    }
-}
 
 
 exports.login = async (req, res) => {
@@ -106,8 +78,6 @@ exports.login = async (req, res) => {
         let user = await User.findOne({ $or: [{ email: data.email }, { username: data.email }] }, "+password");
 
         if (!user) return utils.handleError(res, { message: "Invalid login credentials. Please try again", code: 400 });
-
-     
 
         const isPasswordMatch = await utils.checkPassword(data.password, user);
         if (!isPasswordMatch) return utils.handleError(res, { message: "Invalid login credentials. Please try again", code: 400 });
@@ -122,21 +92,11 @@ exports.login = async (req, res) => {
 };
 
 
-
 exports.signup = async (req, res) => {
     try {
         const data = req.body;
 
-        const doesEmailExists = await emailer.emailExists(data.email);
-        if (doesEmailExists) return res.status(400).json({ message: "This email address is already registered", code: 400 });
-
-        const doesPhoneNumberExist = await emailer.checkMobileExists(data.phone_number);
-        if (doesPhoneNumberExist) return res.status(400).json({ message: "This phone number is already registered", code: 400 });
-
-        // const isPhoneNumberVerified = await checkPhoneNumberVerified(data.phone_number);
-        // if (!isPhoneNumberVerified) return res.status(400).json({ message: "Your phone number has not been verified. Please verify your phone number to continue", code: 400 });
-        // if (data.backup_email && data.backup_email === data.email) return res.status(400).json({ message: "Backup email address cannot be the same as the primary email address. Please enter a different email", code: 400 });
-
+    
         let user = await registerUser(data);
         const token = await saveUserAccessAndReturnToken(req, user)
 
@@ -209,3 +169,83 @@ exports.getProfile = async (req, res) => {
         return res.status(500).json({ message: "Internal server error" });
     }
 }
+
+
+exports.listMovie = async (req, res) => {
+    try {
+
+        const moviedata = await Movies.find({ category: "movie" })
+
+        return res.status(200).json({ data: moviedata })
+    } catch (error) {
+
+        return res.status(500).json({ message: "Internal server error" });
+    }
+}
+
+
+
+exports.listEvents = async (req, res) => {
+    try {
+
+        const moviedata = await Movies.find({ category: "event" })
+
+        return res.status(200).json({ data: moviedata })
+    } catch (error) {
+
+        return res.status(500).json({ message: "Internal server error" });
+    }
+}
+
+
+
+exports.getMovieDetails = async (req, res) => {
+    try {
+
+        console.log("id : " + req.query.id)
+        const moviedata = await Movies.findOne({ _id: new mongoose.Types.ObjectId(req.query.id) })
+
+        if (!moviedata) {
+            return res.status(400).json({ message: "No record found." })
+        }
+        return res.status(200).json({ data: moviedata })
+    } catch (error) {
+
+        return res.status(500).json({ message: "Internal server error" });
+    }
+}
+
+
+
+exports.profileUpdate = async (req, res) => {
+    try {
+            const userdata = req.body;
+            // Check if the user exists
+            const updatedUser = await User.findOneAndUpdate(
+                { _id: req.user._id },
+                userdata,
+                { new: true }
+            );
+
+            return res.status(200).json({ data: updatedUser });
+    } catch (error) {
+        console.error("Error in profile update:", error);
+        return res.status(500).json({ message: "Internal server error" });
+    }
+}
+
+
+
+exports.relatedMovie = async (req, res) => {
+    try {
+        const data = req.query.movieId;
+
+        const moviedata = await Movies.find({_id: new mongoose.Types.ObjectId(req.query.movieId)});
+        return res.status(200).json({ data: moviedata });
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({ message: "Internal server error" });
+    }
+}
+
+
