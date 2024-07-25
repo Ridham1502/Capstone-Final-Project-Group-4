@@ -1,34 +1,76 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from "react-router-dom";
 import './style.css';
-import logo from '../Assets/logo.jpg'; // Ensure the path is correct
+import logo from '../Assets/logo.jpg'; 
 
-export default function Navbar() {
+const Navbar = () => {
+  const navigate = useNavigate();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userRole, setUserRole] = useState('');
+
+  useEffect(() => {
+    const token = getCookie('token');
+
+    if (token) {
+      setIsLoggedIn(true);
+      const storedUserRole = localStorage.getItem('user');
+      if (storedUserRole) {
+        setUserRole(JSON.parse(storedUserRole).role);
+      }
+    } else {
+      setIsLoggedIn(false);
+    }
+  }, []);
+
+  const handleLogout = () => {
+    document.cookie = 'token=; expires=Thu, 01 Jan 1970 00:00:00 GMT';
+    localStorage.removeItem('user');
+    setIsLoggedIn(false);
+    setUserRole('');
+    navigate("/");
+  };
+
+  const getCookie = (name) => {
+    const cookieValue = document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)');
+    return cookieValue ? cookieValue.pop() : '';
+  };
+
   return (
     <div className="navbar">
       <div className="navbar-logo">
-        <Link to="/"><img src={logo} alt="Cultural Canvas Logo" /></Link>
+      <img src={logo} alt="Cultural Canvas Logo"/>
       </div>
       <div className="navbar-links">
-        <Link to="/">Home</Link>
-        <Link to="/movielist">Movie List</Link>
-        <Link to="/addmovie">Add Movies/Events</Link>
-       
-        <Link to="/activities">Activities</Link>
-        <Link to="/sports">Sports</Link>
-        <Link to="/about">About Us</Link>
+        <a href="/">Home</a>
+        <a href="/movies">Movies</a> 
+        {isLoggedIn && userRole === 'Admin' && (
+          <a href="/addmovie">Add Movies</a>
+         )}
+        <a href="#events">Events</a>
+        <a href="#activities">Activities</a>
+        <a href="#about">About Us</a>
         <div className="dropdown">
           <button className="dropbtn">Canada</button>
           <div className="dropdown-content">
-            <Link to="/toronto">Toronto</Link>
-            <Link to="/vancouver">Vancouver</Link>
-            <Link to="/montreal">Montreal</Link>
+            <a href="#toronto">Toronto</a>
+            <a href="#vancouver">Vancouver</a>
+            <a href="#montreal">Montreal</a>
           </div>
         </div>
-        <button className="sign-in-button" onClick={() => window.location.href='/login'}>Sign In</button>
-        <button className="sign-in-button" onClick={() => window.location.href='/register'}>Register</button>
-       
+        {
+          isLoggedIn ? (<a href="/profile">Profile</a>) : ("")
+        }
+        {isLoggedIn ? (
+          <button className="sign-in-btn" onClick={handleLogout}>Logout</button>
+        ) : (
+          <>
+            <button className="sign-in-btn"><a href='/login'>Login</a></button>
+            <button className="sign-in-btn"><a href='/signup'>Sign up</a></button>
+          </>
+        )}
       </div>
     </div>
   );
-}
+};
+
+export default Navbar;
