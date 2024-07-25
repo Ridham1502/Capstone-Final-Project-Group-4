@@ -26,12 +26,13 @@ After installing dependencies, run the following command in both the frontend an
 
 
 <!--API reference-->
+API reference
 TMDB API reference: https://developer.themoviedb.org/reference/intro/getting-started
 
 used API just for Cover Image,Image Gallery and Trailer Link rest of the details of movie description page is fetching from own database.
 
-<!-- other references -->S
-
+<!-- other references -->
+other references
 https://sebhastian.com/bcrypt-node/
 
 https://www.tutorialspoint.com/encrypt-and-decrypt-data-in-nodejs
