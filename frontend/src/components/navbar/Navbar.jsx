@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 import './style.css';
-import logo from '../Assets/logo.jpg'; 
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -38,17 +37,17 @@ const Navbar = () => {
   return (
     <div className="navbar">
       <div className="navbar-logo">
-      <img src={logo} alt="Cultural Canvas Logo"/>
+        <img src="/logo.jpg" alt="Logo" />
       </div>
       <div className="navbar-links">
-        <a href="/">Home</a>
-        <a href="/movies">Movies</a> 
         {isLoggedIn && userRole === 'Admin' && (
           <a href="/addmovie">Add Movies</a>
          )}
-        <a href="#events">Events</a>
+        <a href="/MovieList">Movies</a>
         <a href="#activities">Activities</a>
+        <a href="#sports">Sports</a>
         <a href="#about">About Us</a>
+        <a href="/profile">Profile</a>
         <div className="dropdown">
           <button className="dropbtn">Canada</button>
           <div className="dropdown-content">
