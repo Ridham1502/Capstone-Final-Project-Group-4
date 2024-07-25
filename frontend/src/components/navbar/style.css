@@ -16,11 +16,7 @@
   display: flex;
   align-items: center;
 }
-.container {
-  max-width: 72rem;
-  margin: 0 auto;
-  padding: 2rem;
-}
+
 .navbar-links a,
 .sign-in-btn,
 .dropbtn {
@@ -34,7 +30,7 @@
 }
 
 .sign-in-btn {
-  background-color: #ff6b6b;
+  background-color: #6c63ff;
   border-radius: 5px;
 }
 
