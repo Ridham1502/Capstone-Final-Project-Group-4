@@ -17,14 +17,15 @@ export default function MovieDetails() {
   useEffect(() => {
     async function fetchMovieDetails() {
       try {
-        // Fetch movie details from API
+        // Using API only for trailer and Image Gallery rest of movies details fetching from own database
+        //TMDB API reference: https://developer.themoviedb.org/reference/intro/getting-started
         const response = await axiosInstance.get("/user/getMovieDetails", {
           params: { id: id }
         });
         console.log(response.data);
         setMovie(response?.data?.data);
 
-        // Fetch movie details from TMDb API
+        
         const tmdbResponse = await axios.get(`https://api.themoviedb.org/3/search/movie`, {
           params: {
             api_key: TMDB_API_KEY,
@@ -57,7 +58,7 @@ export default function MovieDetails() {
 
   return (
     <div className="movie-details-page">
-      {/* Conditional rendering for the backdrop */}
+      
       <div
         className="movie-banner"
         style={{
@@ -66,7 +67,7 @@ export default function MovieDetails() {
       >
         <div className="movie-banner-content">
           <h1>{movie.title}</h1>
-          <p>{tmdbDetails?.tagline || 'No tagline available'}</p>
+          <p><strong>Plot:</strong>{movie.plot}</p>
         </div>
       </div>
       <div className="movie-main-content">
@@ -75,25 +76,24 @@ export default function MovieDetails() {
         </div>
         <div className="movie-details">
           <h2>Overview</h2>
-          <p>{tmdbDetails?.overview || 'No overview available'}</p>
+          {/* fetching all details from the own database  */}
           <h3>Details</h3>
           <p><strong>Title:</strong> {movie.title}</p>
-          <p><strong>Original Title:</strong> {tmdbDetails?.original_title || 'N/A'}</p>
-          <p><strong>Director:</strong> {movie?.director || 'N/A'}</p>
-          <p><strong>Producer:</strong> {movie?.productionCompany || 'N/A'}</p>
-          <p><strong>Language:</strong> {movie?.language || 'N/A'}</p>
-          <p><strong>Release Date:</strong> {tmdbDetails?.release_date || 'N/A'}</p>
-          <p><strong>Runtime:</strong> {movie?.runtime ? `${movie.runtime} minutes` : 'N/A'}</p>
-          <p><strong>Budget:</strong> {movie?.budget ? `$${movie.budget}` : 'N/A'}</p>
-          <p><strong>Revenue:</strong> {movie?.boxOffice ? `$${movie.boxOffice}` : 'N/A'}</p>
-          <p><strong>Production Company:</strong> {movie?.productionCompany || 'N/A'}</p>
-          <p><strong>Genres:</strong> {movie?.genre?.length > 0 ? movie.genre.join(', ') : 'N/A'}</p>
-          <p><strong>Award:</strong> {movie?.awards?.length > 0 ? movie.awards.join(', ') : 'N/A'}</p>
-          <p><strong>Writers:</strong> {movie?.writers?.length > 0 ? movie.writers.join(', ') : 'N/A'}</p>
-          <p><strong>Cast:</strong> {movie?.cast?.length > 0 ? movie.cast.join(', ') : 'N/A'}</p>
-          <p><strong>Rating:</strong> {tmdbDetails?.vote_average ? `${tmdbDetails.vote_average} (${tmdbDetails.vote_count} votes)` : 'N/A'}</p>
-          <p><strong>Status:</strong> {tmdbDetails?.status || 'N/A'}</p>
-          <p><strong>Popularity:</strong> {tmdbDetails?.popularity || 'N/A'}</p>
+          <p><strong>Plot:</strong>{movie.plot}</p>
+          <p><strong>Director:</strong> {movie?.director || 'Not Provided by Admin'}</p>
+          <p><strong>Producer:</strong> {movie?.productionCompany || 'Not Provided by Admin'}</p>
+          <p><strong>Language:</strong> {movie?.language || 'Not Provided by Admin'}</p>
+          <p><strong>Release Date:</strong> {movie?. releaseDate || 'Not Provided by Admin'}</p>
+          <p><strong>Runtime:</strong> {movie?.runtime ? `${movie.runtime} minutes` : 'Not Provided by Admin'}</p>
+          <p><strong>Budget:</strong> {movie?.budget ? `$${movie.budget}` : 'Not Provided by Admin'}</p>
+          <p><strong>Revenue:</strong> {movie?.boxOffice ? `$${movie.boxOffice}` : 'Not Provided by Admin'}</p>
+          <p><strong>Production Company:</strong> {movie?.productionCompany || 'Not Provided by Admin'}</p>
+          <p><strong>Genres:</strong> {movie?.genre?.length > 0 ? movie.genre.join(', ') : 'Not Provided by Admin'}</p>
+          <p><strong>Award:</strong> {movie?.awards?.length > 0 ? movie.awards.join(', ') : 'Not Provided by Admin'}</p>
+          <p><strong>Writers:</strong> {movie?.writers?.length > 0 ? movie.writers.join(', ') : 'Not Provided by Admin'}</p>
+          <p><strong>Cast:</strong> {movie?.cast?.length > 0 ? movie.cast.join(', ') : 'Not Provided by Admin'}</p>
+          
+          
           <p><strong>Country:</strong> {movie?.country || 'N/A'}</p>
 
           <a href={movie.trailerLink} target="_blank" rel="noopener noreferrer" className="watch-trailer-button">
@@ -118,6 +118,7 @@ export default function MovieDetails() {
       </div>
       <div className="movie-gallery">
         <h3>Gallery</h3>
+        {/* From API */}
         <div className="image-slider">
           {tmdbDetails?.images?.backdrops?.length > 0 ? (
             tmdbDetails.images.backdrops.slice(0, 5).map((image, index) => (
@@ -128,12 +129,8 @@ export default function MovieDetails() {
           )}
         </div>
       </div>
-      <div className="movie-link">
-        <a href={`https://www.themoviedb.org/movie/${tmdbDetails?.id}`} target="_blank" rel="noopener noreferrer">
-          View on TMDb
-        </a>
-      </div>
+
+      
     </div>
   );
 }
-
