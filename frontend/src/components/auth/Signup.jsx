@@ -12,7 +12,8 @@ const Signup = () => {
     const name = e.target.name.value;
     const email = e.target.email.value;
     const password = e.target.password.value;
-    const body = { name, email, password };
+    const phone_number = e.target.phone_number.value;
+    const body = { name, email, password,phone_number };
 
     try {
       const response = await axiosInstance.post('/user/signup', body);
@@ -36,6 +37,10 @@ const Signup = () => {
         <div className="form-group">
           <label htmlFor="email">Email</label>
           <input type="email" id="email" name="email" required />
+        </div>
+        <div className="form-group">
+          <label htmlFor="phone_number">Phone Number</label>
+          <input type="text" id="phone_number" name="phone_number" required />
         </div>
         <div className="form-group">
           <label htmlFor="password">Password</label>
