@@ -53,7 +53,7 @@ export default function MovieList() {
               </div>
               <div className="movie-info">
                 <h3>{movie.title}</h3>
-                <p>{movie.description}</p>
+                <p>{movie.plot}</p>
                 <Link to={`/MovieDetails?id=${movie._id}`}>
                   <button className="book-button">Know more</button>
                 </Link>
@@ -89,10 +89,8 @@ export default function MovieList() {
       </div>
 
 
-      {/* <div className="footer">
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>
-        <button className="join-button">Join Today</button>
-      </div> */}
+      
     </div>
   );
 }
+
