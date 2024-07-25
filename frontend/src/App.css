@@ -1,11 +1,7 @@
 .App {
   text-align: center;
 }
-.container {
-  max-width: 72rem;
-  margin: 0 auto;
-  padding: 2rem;
-}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
