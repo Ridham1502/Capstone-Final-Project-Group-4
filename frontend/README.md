@@ -1,70 +1,38 @@
-# Getting Started with Create React App
+<!-- To run the CulturalCanvas project, please follow these steps: -->
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<!-- Install Dependencies: -->
 
-## Available Scripts
+Navigate to the frontend directory of the project and run:
 
-In the project directory, you can run:
+### npm i --f
+### npm install @fortawesome/fontawesome-svg-core @fortawesome/free-solid-svg-icons @fortawesome/react-fontawesome
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+<!-- This command forces the installation of the necessary dependencies specified in the package.json file, resolving any conflicts that might prevent successful installation. -->
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Navigate to the backend directory and run:
 
-### `npm test`
+### npm i --f
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+<!-- This ensures that all backend dependencies are correctly installed, again handling any potential conflicts. -->
 
-### `npm run build`
+<!-- Start the Project: -->
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+After installing dependencies, run the following command in both the frontend and backend directories:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### npm start
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+<!-- This command will start the project, allowing you to run both the frontend and backend servers. -->
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+<!--API reference-->
+TMDB API reference: https://developer.themoviedb.org/reference/intro/getting-started
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+used API just for Cover Image,Image Gallery and Trailer Link rest of the details of movie description page is fetching from own database.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+<!-- other references -->S
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+https://sebhastian.com/bcrypt-node/
 
-## Learn More
+https://www.tutorialspoint.com/encrypt-and-decrypt-data-in-nodejs
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
