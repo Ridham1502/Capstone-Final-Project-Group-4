@@ -1,6 +1,3 @@
-
-
-
 import './App.css';
 import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
 import Footer from './components/footer/Footer';
@@ -16,6 +13,13 @@ import MovieDetails from './components/MovieList/MovieDetails';
 import AdminDashboard from './components/Admin/AdminDashboard';
 import UserList from './components/Admin/UserList';
 import { Toaster } from 'react-hot-toast';
+import BookTicket from './components/MovieList/BookTicket';
+import FoodAdd from './components/Admin/AddFood';
+import Booking from './components/Admin/Booking';
+import FoodList from './components/Admin/FoodList';
+import HomePage from './components/HomePage/HomePage';
+import AboutUs from './components/Aboutus/Aboutus';
+import Confirmation from './components/MovieList/Confirmation';
 
 function App() {
   return (
@@ -23,17 +27,24 @@ function App() {
       <div>
         <MainNavigation />
         <Routes>
-          <Route path="/" element={<MovieList />} />
+        <Route path="/" element={<HomePage />} />
+          <Route path="/movie" element={<MovieList />} />
+          <Route path="/about" element={<AboutUs />} />
+          <Route path="/confirmation" element={<Confirmation />} />
           <Route path="/movielist" element={<MovieList />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/loginadmin" element={<AdminLogin />} />
           <Route path="/moviedetails" element={<MovieDetails />} />
+          <Route path="/bookticket" element={<BookTicket />} />
           <Route path="/admin/*" element={<AdminDashboard />}>
             <Route index element={<h3>Welcome to Admin Dashboard</h3>} />
             <Route path="addmovie" element={<AddMovie />} />
             <Route path="userlist" element={<UserList />} />
+            <Route path="foodadd" element={<FoodAdd />} />
+            <Route path="bookinglist" element={<Booking />} />
+            <Route path="foodlist" element={<FoodList />} />
           </Route>
         </Routes>
         <FooterConditional />
