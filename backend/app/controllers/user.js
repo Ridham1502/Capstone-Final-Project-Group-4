@@ -6,9 +6,9 @@ const { default: mongoose } = require('mongoose');
 const Movies = require('../models/movie')
 const OTP = require('../models/otp')
 const User = require('../models/user')
-
-// ------------------------------------------------------------------------
-
+const Food = require('../models/food')
+const TicketBooking = require('../models/ticketbooking')
+const FeedbackModel = require('../models/Feedback');
 
 exports.test = async (req, res) => {
     try {
@@ -20,9 +20,6 @@ exports.test = async (req, res) => {
     }
 }
 
-
-
-// -------------------------------- LOGIN & SIGNUP ---------------------
 const generateToken = (_id) => {
     const expiration = Math.floor(Date.now() / 1000) + (60 * 60 * 24 * process.env.JWT_EXPIRATION_DAY)
     return utils.encrypt(
@@ -71,7 +68,6 @@ const saveUserAccessAndReturnToken = async (req, user) => {
 }
 
 
-
 exports.login = async (req, res) => {
     try {
         const data = req.body;
@@ -91,12 +87,11 @@ exports.login = async (req, res) => {
     }
 };
 
-
 exports.signup = async (req, res) => {
     try {
         const data = req.body;
 
-    
+
         let user = await registerUser(data);
         const token = await saveUserAccessAndReturnToken(req, user)
 
@@ -109,8 +104,6 @@ exports.signup = async (req, res) => {
         return res.status(500).json({ message: "Internal server error" });
     }
 };
-
-
 
 exports.changePassword = async (req, res) => {
     try {
@@ -133,10 +126,6 @@ exports.changePassword = async (req, res) => {
         utils.handleError(res, error);
     }
 };
-
-
-
-// ---------------------------------------------------------------------
 
 exports.uploadFileToServer = async (req, res) => {
     try {
@@ -174,7 +163,13 @@ exports.getProfile = async (req, res) => {
 exports.listMovie = async (req, res) => {
     try {
 
-        const moviedata = await Movies.find({ category: "movie" })
+        console.log(req.query.language)
+        let moviedata
+        if (req.query.language) {
+            moviedata = await Movies.find({ category: "movie", language: req.query.language })
+        } else {
+            moviedata = await Movies.find({ category: "movie" })
+        }
 
         return res.status(200).json({ data: moviedata })
     } catch (error) {
@@ -219,15 +214,15 @@ exports.getMovieDetails = async (req, res) => {
 
 exports.profileUpdate = async (req, res) => {
     try {
-            const userdata = req.body;
-            // Check if the user exists
-            const updatedUser = await User.findOneAndUpdate(
-                { _id: req.user._id },
-                userdata,
-                { new: true }
-            );
+        const userdata = req.body;
+        // Check if the user exists
+        const updatedUser = await User.findOneAndUpdate(
+            { _id: req.user._id },
+            userdata,
+            { new: true }
+        );
 
-            return res.status(200).json({ data: updatedUser });
+        return res.status(200).json({ data: updatedUser });
     } catch (error) {
         console.error("Error in profile update:", error);
         return res.status(500).json({ message: "Internal server error" });
@@ -240,7 +235,7 @@ exports.relatedMovie = async (req, res) => {
     try {
         const data = req.query.movieId;
 
-        const moviedata = await Movies.find({_id: new mongoose.Types.ObjectId(req.query.movieId)});
+        const moviedata = await Movies.find({ _id: new mongoose.Types.ObjectId(req.query.movieId) });
         return res.status(200).json({ data: moviedata });
     } catch (error) {
         console.log(error);
@@ -249,3 +244,80 @@ exports.relatedMovie = async (req, res) => {
 }
 
 
+exports.listAllFood = async (req, res) => {
+    try {
+        const fooddata = await Food.find({});
+
+        return res.status(200).json({ data: fooddata });
+    } catch (error) {
+        console.error('Error fetching users:', error);
+        return res.status(500).json({ message: 'Internal server error' });
+    }
+};
+
+
+exports.bookticket = async (req, res) => {
+    try {
+        const data = req.body;
+        data.userId = req.user._id;
+        const ticketBooking = new TicketBooking(data);
+        await ticketBooking.save();
+        return res.status(200).json({ message: "Ticket booked successfully" });
+    } catch (error) {
+        console.error('Error fetching users:', error);
+        return res.status(500).json({ message: 'Internal server error' });
+    }
+};
+
+
+exports.movieRecomendation = async (req, res) => {
+    try {
+        const movieid = req.query.id;
+       
+        const movie = await Movies.findById(movieid);
+
+        if (!movie) {
+            return res.status(404).json({ message: 'Movie not found' });
+        }
+
+        const genre = movie.genre[0]; 
+        
+       
+        const recommendedMovies = await Movies.find({ 
+            genre: genre, 
+            _id: { $ne: new mongoose.Types.ObjectId(movieid) } 
+        }).limit(5);
+
+        return res.status(200).json({ data: recommendedMovies });
+    } catch (error) {
+        console.error('Error fetching movie recommendations:', error);
+        return res.status(500).json({ message: 'Internal server error' });
+    }
+};
+
+
+exports.movieFeedback = async (req, res) => {
+    try {
+        const movieid = req.query.movieId;
+        const movie = await FeedbackModel.find({movieId: new mongoose.Types.ObjectId(movieid)});
+
+        return res.status(200).json({ data: movie });
+    } catch (error) {
+        console.error('Error fetching movie feedback:', error);
+        return res.status(500).json({ message: 'Internal server error' });
+    }
+};
+
+
+exports.createmovieFeedback = async (req, res) => {
+    try {
+        const moviedata = req.body;
+        const feedback = new FeedbackModel(moviedata);
+        await feedback.save();
+
+        return res.status(200).json({ message: "Saved successfully" });
+    } catch (error) {
+        console.error('Error in saving movie feedback:', error);
+        return res.status(500).json({ message: 'Internal server error' });
+    }
+};
