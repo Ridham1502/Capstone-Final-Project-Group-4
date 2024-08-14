@@ -1,0 +1,263 @@
+.book-ticket-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    font-family: Arial, sans-serif;
+  }
+  
+  .movie-details {
+    display: flex;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    flex: 1 1 100%;
+  }
+  
+  .movie-image {
+    width: 150px;
+    height: auto;
+    border-radius: 8px;
+    margin-right: 20px;
+  }
+  
+  .movie-info {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .movie-details h1, .food-beverages-container h2, .booking-summary h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .movie-details p, .booking-summary p {
+    margin: 5px 0;
+    font-size: 16px;
+    color: #555;
+  }
+  
+  .content {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    flex: 4 2 100%;
+  }
+  
+  .ticket-form {
+    flex: 1 1 50%;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .ticket-form .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .ticket-form .form-group label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .ticket-form .form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+  
+  .submit-button, .proceed-button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .submit-button:hover, .proceed-button:hover {
+    background-color: #0056b3;
+  }
+  
+  .food-beverages-container {
+    flex: 1 1 50%;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .payment-container {
+    flex: 1 1 30%;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  .food-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  .food-item {
+    flex: 1 1 calc(50% - 20px);
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    background-color: #fff;
+  }
+  
+  .food-item img {
+    width: 80px;
+    height: auto;
+    margin-right: 10px;
+  }
+  
+  .food-info h3 {
+    font-size: 18px;
+    margin-bottom: 5px;
+  }
+  
+  .food-info p {
+    margin: 2px 0;
+    font-size: 14px;
+  }
+  
+  .food-info .food-price {
+    font-size: 16px;
+    font-weight: bold;
+    color: #007bff;
+  }
+  
+  .food-item button {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 14px;
+    cursor: pointer;
+    margin-left: auto;
+    transition: background-color 0.3s ease;
+  }
+  
+  .food-item button:hover {
+    background-color: #0056b3;
+  }
+  
+  .booking-summary {
+    flex: 1 1 100%;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .booking-summary p {
+    font-size: 16px;
+    color: #555;
+  }
+  
+  
+  
+  .feedback-section {
+    padding: 20px;
+    border-top: 1px solid #ddd;
+    margin-top: 20px;
+  }
+  
+  .feedback-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .feedback-form label {
+    font-weight: bold;
+  }
+  
+  .feedback-form input,
+  .feedback-form textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  .feedback-form button {
+    padding: 10px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .feedback-form button:hover {
+    background-color: #0056b3;
+  }
+  
+  .feedback-list {
+    padding: 20px;
+    border-top: 1px solid #ddd;
+    margin-top: 20px;
+  }
+  
+  .feedback-item {
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+  }
+  
+  .feedback-avatar {
+    margin-right: 15px;
+  }
+  
+  .feedback-avatar img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  
+  .feedback-content {
+    flex: 1;
+  }
+  
+  .feedback-content p {
+    margin: 0;
+  }
+  
+  .feedback-content strong {
+    color: #333;
+  }
+  
+  .feedback-content small {
+    color: #999;
+  }
+  
+  .feedback-content {
+    margin-left: 10px;
+  }
+  
+  .feedback-item:last-child {
+    border-bottom: none;
+  }
+  
