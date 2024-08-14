@@ -8,7 +8,6 @@ import Cookies from "js-cookie";
 const AdminLogin = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  //   const history = useHistory();
   const navigate = useNavigate();
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -24,7 +23,7 @@ const AdminLogin = () => {
 
       Cookies.set("token", token);
       console.log("response.data.data  :" + response.data.data.user)
-      // localStorage.setItem("user", response.data.data.user);
+    
 
       navigate("/admin/addmovie");
       toast.success("Login successful!");

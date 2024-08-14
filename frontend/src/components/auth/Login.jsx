@@ -8,7 +8,8 @@ import Cookies from "js-cookie";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-   const navigate = useNavigate();
+  const navigate = useNavigate();
+
   const handleLogin = async (e) => {
     e.preventDefault();
 
@@ -18,16 +19,14 @@ const Login = () => {
         password,
       });
 
-      console.log(response?.data.data.token);
       const token = response?.data.data.token;
 
-      // Store token in localStorage
-      //   localStorage.setItem("token", response.data.data.token);
+      // Store token in cookies
       Cookies.set("token", token);
 
-      // Redirect to dashboard or another protected route
+      // Redirect to the homepage after successful login
       toast.success("Login successful!");
-      navigate("/profile");
+      navigate("/"); // Redirect to homepage
     } catch (error) {
       console.error("Login error:", error);
       toast.error("Failed to log in. Please check your credentials.");
