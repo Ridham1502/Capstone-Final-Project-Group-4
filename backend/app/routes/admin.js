@@ -55,4 +55,37 @@ router.delete(
     controller.movieDeleteByid 
 )
 
+
+router.get(
+    '/listAllUser',
+    controller.listAllUser 
+)
+
+
+router.post(
+    '/addFood',
+    controller.addFood 
+)
+
+router.get(
+    '/listAllFood',
+    controller.listAllFood 
+)
+
+router.get(
+    '/listAllBooking',
+    controller.listAllBooking 
+)
+
+
+router.delete(
+    '/foodDeleteByid',
+    controller.foodDeleteByid 
+)
+
+router.delete(
+    '/userDeleteByid',
+    controller.userDeleteByid 
+)
+
 module.exports = router
