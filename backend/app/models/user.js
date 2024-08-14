@@ -26,7 +26,6 @@ const UserSchema = new mongoose.Schema(
         },
         phone_number: {
             type: String,
-            default: "99999999999",
         },
         bio: {
             type: String
@@ -80,34 +79,20 @@ const UserSchema = new mongoose.Schema(
 );
 
 const hash = (user, salt, next) => {
-
-
     bcrypt.hash(user.password, salt, null, (error, newHash) => {
-
-
         if (error) {
             return next(error);
-
-
         }
-        
         user.password = newHash;
         return next();
     });
 };
 
 const genSalt = (user, SALT_FACTOR, next) => {
-
-
     bcrypt.genSalt(SALT_FACTOR, (err, salt) => {
         if (err) {
-
-
             return next(err);
-
         }
-
-
         return hash(user, salt, next);
     });
 };
