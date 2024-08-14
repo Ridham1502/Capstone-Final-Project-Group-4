@@ -4,12 +4,14 @@ const uuid = require('uuid');
 const mongoose = require("mongoose");
 const jwt = require("jsonwebtoken")
 const Movies = require('../models/movie')
+const User = require('../models/user')
+const Food = require('../models/food')
+const Booking = require('../models/ticketbooking')
 
 const generateToken = (_id, remember_me) => {
   const expiration = Math.floor(Date.now() / 1000) + (60 * 60 * 24 * (remember_me === true ? process.env.JWT_EXPIRATION_DAY_FOR_REMEMBER_ME : process.env.JWT_EXPIRATION_DAY));
 
-  // returns signed and encrypted token
-  return utils.encrypt(
+    return utils.encrypt(
     jwt.sign(
       {
         data: {
@@ -85,7 +87,7 @@ exports.forgotPassword = async (req, res) => {
       exp_time: new Date(Date.now() + tokenExpirationDuration * 1000)
     });
 
-    //Save the resetInstance to the database
+ 
     await resetInstance.save();
     const mailOptions = {
       to: user.email,
@@ -115,23 +117,18 @@ exports.resetPassword = async (req, res) => {
     const { token, password } = req.body;
     const reset = await ResetPassword.findOne({ token: token });
 
-    // Check if the reset tokenn exists and if it's flagged as used
-    if (!reset || reset.used) {
+       if (!reset || reset.used) {
       return utils.handleError(res, { message: 'Invalid or expired reset password token', code: 400 })
     }
 
-    // Check if the token has expired
     if (reset.exp_time < new Date()) {
       return utils.handleError(res, { message: 'Reset password token has expired', code: 400 })
     }
 
-    // Find the user associated with the reset token
-    const user = await Admin.findOne({ email: reset.email });
+     const user = await Admin.findOne({ email: reset.email });
 
     user.password = password;
     await user.save();
-
-    // Reset the token flag and time
     reset.used = true;
     reset.time = undefined;
     await reset.save();
@@ -166,6 +163,8 @@ exports.changePassword = async (req, res) => {
     utils.handleError(res, error);
   }
 };
+
+
 
 
 exports.createMovie = async (req, res) => {
@@ -243,7 +242,7 @@ exports.editMovieDetails = async (req, res) => {
       data,
       { new: true }
     )
-    return res.status(200).json({message: "Edit successfully"});
+    return res.status(200).json({ message: "Edit successfully" });
 
   } catch (error) {
     console.log(error)
@@ -251,12 +250,12 @@ exports.editMovieDetails = async (req, res) => {
   }
 }
 
-exports.MovieDetails = async(req, res) => {
+exports.MovieDetails = async (req, res) => {
   try {
     const id = req.query;
-    console.log("id : "+ id)
-    const data = await Movies.findOne({_id: new mongoose.Types.ObjectId(id)});
-    return res.status(200).json({data: data});
+    console.log("id : " + id)
+    const data = await Movies.findOne({ _id: new mongoose.Types.ObjectId(id) });
+    return res.status(200).json({ data: data });
   } catch (error) {
     console.log(error)
     return res.status(500).json({ message: "Internal server error" });
@@ -264,12 +263,96 @@ exports.MovieDetails = async(req, res) => {
 }
 
 
-exports.movieDeleteByid = async(req, res) => {
+exports.movieDeleteByid = async (req, res) => {
   try {
     const id = req.query.movieId;
-    console.log("id : "+ id)
-    const data = await Movies.findOneAndDelete({_id: new mongoose.Types.ObjectId(id)});
-    return res.status(200).json({message: "Delete successfully"});
+    console.log("id : " + id)
+    const data = await Movies.findOneAndDelete({ _id: new mongoose.Types.ObjectId(id) });
+    return res.status(200).json({ message: "Delete successfully" });
+  } catch (error) {
+    console.log(error)
+    return res.status(500).json({ message: "Internal server error" });
+  }
+}
+
+
+exports.listAllUser = async (req, res) => {
+  try {
+    let query = {};
+    if (req.query.search) {
+      query = { full_name: { $regex: new RegExp(req.query.search, 'i') } };
+    }
+
+    const userdata = await User.find(query);
+
+    return res.status(200).json({ data: userdata });
+  } catch (error) {
+    console.error('Error fetching users:', error);
+    return res.status(500).json({ message: 'Internal server error' });
+  }
+};
+
+
+
+
+exports.addFood = async (req, res) => {
+  try {
+    const data = req.body
+
+    const Fooddata = new Food(data);
+    await Fooddata.save();
+
+    return res.status(200).json({ message: 'Fooddata saved successfully' })
+  } catch (error) {
+    console.log(error)
+    return res.status(500).json({ message: "Internal server error" });
+  }
+}
+
+
+exports.listAllFood = async (req, res) => {
+  try {
+    const fooddata = await Food.find({});
+
+    return res.status(200).json({ data: fooddata });
+  } catch (error) {
+    console.error('Error fetching users:', error);
+    return res.status(500).json({ message: 'Internal server error' });
+  }
+};
+
+exports.listAllBooking = async (req, res) => {
+  try {
+    const bookingdata = await Booking.find({}).populate('movieId').populate('addonfood');
+
+    return res.status(200).json({ data: bookingdata });
+  } catch (error) {
+    console.error('Error fetching users:', error);
+    return res.status(500).json({ message: 'Internal server error' });
+  }
+};
+
+
+
+exports.foodDeleteByid = async (req, res) => {
+  try {
+    const id = req.query.foodId;
+    console.log("id : " + id)
+    const data = await Food.findOneAndDelete({ _id: new mongoose.Types.ObjectId(id) });
+    return res.status(200).json({ message: "Delete successfully" });
+  } catch (error) {
+    console.log(error)
+    return res.status(500).json({ message: "Internal server error" });
+  }
+}
+
+
+exports.userDeleteByid = async (req, res) => {
+  try {
+    const id = req.query.userId;
+    console.log("id : " + id)
+    await User.findOneAndDelete({ _id: new mongoose.Types.ObjectId(id) });
+    return res.status(200).json({ message: "Delete successfully" });
   } catch (error) {
     console.log(error)
     return res.status(500).json({ message: "Internal server error" });
