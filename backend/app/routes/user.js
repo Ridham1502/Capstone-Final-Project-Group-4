@@ -9,12 +9,11 @@ const requireAuth = passport.authenticate('jwt', {
 const trimRequest = require('trim-request')
 const authorize = require('../middlewares/authorize');
 
-
 router.get(
     '/test',
     controller.test
 )
-// -----------------------------------------
+
 router.post(
     '/signup',
     controller.signup
@@ -26,10 +25,6 @@ router.post(
     trimRequest.all,
     controller.login
 )
-
-
-
-// ------------------------------------------------
 
 router.post(
     '/uploadFileToServer',
@@ -67,5 +62,31 @@ router.put(
     controller.profileUpdate
 )
 
+router.get(
+    '/listAllFood',
+    controller.listAllFood 
+)
+
+router.post(
+    '/bookticket',
+    requireAuth,
+    controller.bookticket 
+)
+
+router.get(
+    '/movieRecomendation',
+    controller.movieRecomendation 
+)
+
+
+router.post(
+    '/createmovieFeedback',
+    controller.createmovieFeedback 
+)
+
+router.get(
+    '/movieFeedback',
+    controller.movieFeedback 
+)
 
 module.exports = router
