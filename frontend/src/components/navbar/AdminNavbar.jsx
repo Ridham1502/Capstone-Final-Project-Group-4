@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFilm, faGauge, faUsers,faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
+import { faFilm, faGauge, faUsers,faSignOutAlt,faTicket,faBowlFood } from '@fortawesome/free-solid-svg-icons';
 import './adminnav.css';
 import { useNavigate } from "react-router-dom";
 
@@ -30,6 +30,21 @@ const AdminNavbar = () => {
         <li>
           <NavLink to="/admin/userlist" activeClassName="selected">
             <FontAwesomeIcon icon={faUsers} /> Users
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/admin/foodadd" activeClassName="selected">
+            <FontAwesomeIcon icon={faBowlFood} /> Food Add
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/admin/bookinglist" activeClassName="selected">
+            <FontAwesomeIcon icon={faTicket} /> Booking
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/admin/foodlist" activeClassName="selected">
+            <FontAwesomeIcon icon={faBowlFood} /> Food/Bevrages
           </NavLink>
         </li>
         <li>
