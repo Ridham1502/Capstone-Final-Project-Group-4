@@ -85,7 +85,6 @@ const genSalt = (user, SALT_FACTOR, next) => {
 };
 
 
-
 adminSchema.pre("save", async function (next) {
     const that = this;
     const SALT_FACTOR = 5;
