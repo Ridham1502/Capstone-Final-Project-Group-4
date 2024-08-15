@@ -20,6 +20,11 @@ import FoodList from './components/Admin/FoodList';
 import HomePage from './components/HomePage/HomePage';
 import AboutUs from './components/Aboutus/Aboutus';
 import Confirmation from './components/MovieList/Confirmation';
+import ContactUsPage from './components/ContactUsPage/ContactUsPage';
+import FAQPage from './components/FAQ/FAQPage';
+
+
+
 
 function App() {
   return (
@@ -28,6 +33,8 @@ function App() {
         <MainNavigation />
         <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="/contact" element={<ContactUsPage />} />
+
           <Route path="/movie" element={<MovieList />} />
           <Route path="/about" element={<AboutUs />} />
           <Route path="/confirmation" element={<Confirmation />} />
@@ -37,7 +44,8 @@ function App() {
           <Route path="/profile" element={<Profile />} />
           <Route path="/loginadmin" element={<AdminLogin />} />
           <Route path="/moviedetails" element={<MovieDetails />} />
-          <Route path="/bookticket" element={<BookTicket />} />
+          <Route path="/bookticket" element={<BookTicket />} /> 
+          <Route path="/faqpage" element={<FAQPage />} />
           <Route path="/admin/*" element={<AdminDashboard />}>
             <Route index element={<h3>Welcome to Admin Dashboard</h3>} />
             <Route path="addmovie" element={<AddMovie />} />
@@ -45,6 +53,8 @@ function App() {
             <Route path="foodadd" element={<FoodAdd />} />
             <Route path="bookinglist" element={<Booking />} />
             <Route path="foodlist" element={<FoodList />} />
+          
+
           </Route>
         </Routes>
         <FooterConditional />
