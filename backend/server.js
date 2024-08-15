@@ -12,11 +12,16 @@ const adminRoutes = require('./app/routes/admin');
 const movieRoutes = require('./app/routes/movie');
 const eventRoutes = require('./app/routes/event');
 const theaterRoutes = require('./app/routes/theaters'); 
+const contactRoutes = require('./app/routes/contactRoutes');
+const faqRoutes = require('./routes/faqRoutes'); 
+
 
 var fs = require("fs");
 const app = express();
 
+
 app.use(helmet());
+
 
 const corsOptions = {
     "origin": "*",
@@ -25,6 +30,7 @@ const corsOptions = {
     "optionsSuccessStatus": 204,
     "allowedHeaders": 'Content-Type, Authorization'
 }
+
 
 app.use(cors());
 app.options('*', cors(corsOptions));
@@ -42,7 +48,10 @@ app.use('/user', userRoutes); // User routes
 app.use('/admin', adminRoutes); // Admin routes
 app.use('/api', movieRoutes); // Movie routes
 app.use('/api', eventRoutes); // Event routes
-app.use('/api/theaters', theaterRoutes); 
+app.use('/api/theaters', theaterRoutes); // Ensure this line is correct
+app.use('/api', contactRoutes);
+app.use('/api', faqRoutes);
+
 
 app.use((req, res, next) => {
     const error = {
@@ -59,6 +68,9 @@ app.use((err, req, res, next) => {
     const status = err.status || 500;
     res.status(status).json({ error: err.message || "Internal Server Error" });
 });
+
+// app.use(cors());
+// app.options('*', cors(corsOptions)); 
 
 server.listen(process.env.PORT || 5002, () => {
     console.log("****************************");
