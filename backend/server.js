@@ -44,11 +44,11 @@ app.use(
 app.use(passport.initialize());
 app.use(fileUpload());
 
-app.use('/user', userRoutes); // User routes
-app.use('/admin', adminRoutes); // Admin routes
-app.use('/api', movieRoutes); // Movie routes
-app.use('/api', eventRoutes); // Event routes
-app.use('/api/theaters', theaterRoutes); // Ensure this line is correct
+app.use('/user', userRoutes); 
+app.use('/admin', adminRoutes); 
+app.use('/api', movieRoutes); 
+app.use('/api', eventRoutes); 
+app.use('/api/theaters', theaterRoutes);
 app.use('/api', contactRoutes);
 app.use('/api', faqRoutes);
 

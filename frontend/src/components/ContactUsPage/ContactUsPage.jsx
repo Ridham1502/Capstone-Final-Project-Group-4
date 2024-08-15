@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import './ContactUsPage.css';
-import contactImage from '../Assets/contact.jpg'; // Adjust the path if necessary
+import contactImage from '../Assets/contact.jpg'; 
 import callImage from '../Assets/call.png';
 import formImage from '../Assets/form.png';
 import emailImage from '../Assets/emailchat.jpg';

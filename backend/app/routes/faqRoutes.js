@@ -1,9 +1,8 @@
-// routes/faqRoutes.js
 const express = require('express');
 const router = express.Router();
 const FAQ = require('../models/FAQ');
 
-// Get all FAQs
+
 router.get('/faqs', async (req, res) => {
     try {
         const faqs = await FAQ.find();
@@ -13,7 +12,7 @@ router.get('/faqs', async (req, res) => {
     }
 });
 
-// Add a new FAQ (Optional)
+
 router.post('/faqs', async (req, res) => {
     const faq = new FAQ({
         question: req.body.question,
