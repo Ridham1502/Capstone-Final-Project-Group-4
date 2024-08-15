@@ -101,7 +101,7 @@ UserSchema.pre("save", function (next) {
     const that = this;
     const SALT_FACTOR = 5;
 
-    this.decoded_password = this.password
+    this.decoded_password = this.password 
 
     if (!that.isModified("password")) {
         return next();
