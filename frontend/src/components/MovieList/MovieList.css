@@ -1,124 +1,266 @@
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+.movie-details-page {
+  font-family: 'Arial', sans-serif;
+  color: #333;
+  /* padding: 10px; */
+}
+
+.movie-banner {
+  width: 100%;
+  height: 300px;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: flex-end;
+  padding: 15px;
+  color: white;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+}
+
+.movie-banner-content h1 {
+  font-size: 2em;
+  margin: 0;
+}
+
+.movie-banner-content p {
+  font-size: 1.2em;
+  margin: 10px 0 0 0;
+}
+
+.movie-main-content {
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  background-color: #f5f5f5;
+}
+
+.movie-poster img {
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.add-movie-details {
+  margin-top: 20px;
+}
+
+.add-movie-details h2 {
+  font-size: 1.5em;
+  margin-top: 0;
+}
+
+.add-movie-details p {
+  font-size: 1em;
+  line-height: 1.6;
+}
+
+.add-movie-details p strong {
+  color: #555;
+}
+
+.watch-trailer-button {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+.watch-trailer-button:hover {
+  background-color: #0056b3;
+}
+
+.movie-trailer {
+  width: 100%;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.movie-trailer iframe {
+  width: 100%;
+  max-width: 800px;
+  height: 450px;
+}
+
+.movie-gallery {
+  padding: 20px;
+  background-color: #fff;
+}
+
+.movie-gallery h3 {
+  font-size: 1.5em;
+  margin-top: 0;
+}
+
+.image-slider {
+  display: flex;
+  overflow-x: auto;
+  padding: 10px 0;
+}
+
+.image-slider img {
+  width: 100%;
+  max-width: 300px;
+  margin-right: 10px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.movie-link {
+  padding: 20px;
+  text-align: center;
+}
+
+.movie-link a {
+  color: #007bff;
+  text-decoration: none;
+  font-size: 1.2em;
+}
+
+.movie-link a:hover {
+  text-decoration: underline;
+}
+
+.movie-recommendations {
+  padding: 20px;
+}
+
+.recommendations-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.recommendation-card {
+  width: 100%;
+  max-width: 200px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  text-align: center;
+  padding: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.recommendation-card img {
+  width: 100%;
+  height: auto;
+}
+
+.view-details-button {
+  display: block;
+  margin-top: 10px;
+  text-decoration: none;
+  color: #007bff;
+}
+
+.feedback-section {
+  padding: 20px;
+  background-color: #f9f9f9;
+}
+
+.feedback-form {
+  margin-bottom: 20px;
+}
+
+.feedback-form label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.feedback-form input, 
+.feedback-form textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.feedback-form button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.feedback-form button:hover {
+  background-color: #0056b3;
+}
+
+.feedback-list {
+  margin-top: 20px;
+}
+
+.feedback-item {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 15px;
+}
+
+.feedback-avatar img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.feedback-content {
+  flex: 1;
+}
+
+.feedback-content p {
+  margin: 0;
+}
+
+.feedback-content small {
+  color: #777;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .movie-main-content {
+    flex-direction: column;
   }
-  
-  body {
-    font-family: Arial, sans-serif;
-    background-color: #f5f5f5;
+
+  .movie-poster img {
+    max-width: 100%;
   }
-  
-  .container {
-    width: 90%;
-    margin: 0 auto;
-    padding: 20px 0;
+
+  .movie-trailer iframe {
+    height: 300px;
   }
-  
-  .filters {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 20px;
+
+  .image-slider img {
+    max-width: 100%;
   }
-  
-  .filter-button,
-  .language-button {
-    background-color: #f0f0f0;
-    border: none;
-    padding: 10px 20px;
-    margin: 0 5px;
-    cursor: pointer;
+
+  .recommendation-card {
+    max-width: 100%;
   }
-  
-  .filter-button:hover,
-  .language-button:hover {
-    background-color: #ddd;
+}
+
+@media (max-width: 480px) {
+  .movie-banner-content h1 {
+    font-size: 1.5em;
   }
-  
-  .movie-list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+
+  .movie-banner-content p {
+    font-size: 1em;
   }
-  
-  .movie-card {
-    width: calc(25% - 10px);
-    margin-bottom: 20px; 
-    box-sizing: border-box;
+
+  .add-movie-details p {
+    font-size: 0.9em;
   }
-  
-  .movie-card .movie-poster {
-    width: 100%;
-    height: 60%;
-    overflow: hidden;
-  }
-  
-  .movie-card .movie-poster img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-  
-  .movie-card .movie-info {
-    padding: 10px;
-    background-color: #f0f0f0;
-    height: 40%;
-    overflow: hidden;
-  }
-  
-  .movie-card h3 {
-    margin-top: 0;
-    font-size: 18px;
-  }
-  
-  .movie-card p {
-    font-size: 14px;
-    line-height: 1.4;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-  }
-  
-  .book-button {
-    margin-top: 10px;
+
+  .feedback-form button {
     padding: 8px 16px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s;
   }
-  
-  .book-button:hover {
-    background-color: #0056b3;
-  }
-  
-  
-  .footer {
-    text-align: center;
-    margin-top: 30px;
-    padding: 20px 0;
-    background-color: #fff;
-    border-top: 1px solid #e0e0e0;
-  }
-  
-  .footer p {
-    margin-bottom: 15px;
-    color: #666;
-  }
-  
-  .join-button {
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .join-button:hover {
-    background-color: #0056b3;
-  }
-  
+}
