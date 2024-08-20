@@ -1,0 +1,145 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f5f5f5;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+@media (max-width: 768px) {
+  .filters {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+}
+
+.filter-button,
+.language-button {
+  background-color: #3b3a3a;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  color: #fff;
+  border-radius: 5px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.filter-button:hover,
+.language-button:hover {
+  background-color: #ddd;
+  color: #000;
+}
+
+.movie-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.movie-card {
+  flex: 1 1 calc(50% - 20px);
+  margin-bottom: 20px;
+  box-sizing: border-box;
+  background-color: #fff;
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.movie-card .movie-poster {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+}
+
+.movie-card .movie-poster img {
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+}
+
+.movie-card .movie-info {
+  padding: 10px;
+}
+
+.movie-card h3 {
+  margin-top: 0;
+  font-size: 18px;
+}
+
+.movie-card p {
+  font-size: 14px;
+  line-height: 1.4;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+}
+
+.book-button {
+  margin-top: 10px;
+  padding: 8px 16px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.book-button:hover {
+  background-color: #0056b3;
+}
+
+@media (max-width: 1024px) {
+  .movie-card {
+    flex: 1 1 calc(50% - 20px);
+  }
+}
+
+@media (max-width: 768px) {
+  .movie-card {
+    flex: 1 1 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .filter-button,
+  .language-button {
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+}
+
+.footer {
+  text-align: center;
+  margin-top: 30px;
+  padding: 20px;
+  background-color: #fff;
+  border-top: 1px solid #e0e0e0;
+}
+
+.footer p {
+  margin-bottom: 15px;
+  color: #666;
+}

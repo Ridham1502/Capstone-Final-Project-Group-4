@@ -1,0 +1,47 @@
+.admin-navbar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 200px;
+  height: 100%;
+  background-color: #333;
+  color: white;
+  padding: 20px;
+}
+
+.admin-navbar ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.admin-navbar li {
+  margin-bottom: 10px;
+}
+
+.admin-navbar a {
+  color: white;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-radius: 5px;
+}
+.admin-content {
+  margin-left: 200px;
+  padding: 20px;
+}
+
+
+.admin-navbar a:hover {
+  background-color: #444;
+}
+
+.admin-navbar a .fa-icon {
+  margin-right: 10px;
+}
+
+.admin-navbar .selected {
+  background-color: #555;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
