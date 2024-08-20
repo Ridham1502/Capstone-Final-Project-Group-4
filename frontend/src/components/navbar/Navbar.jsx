@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 import './style.css';
 
 const Navbar = () => {
   const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userRole, setUserRole] = useState('');
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     const token = getCookie('token');
@@ -26,7 +27,7 @@ const Navbar = () => {
     localStorage.removeItem('user');
     setIsLoggedIn(false);
     setUserRole('');
-    navigate("/");
+    navigate('/');
   };
 
   const getCookie = (name) => {
@@ -34,33 +35,32 @@ const Navbar = () => {
     return cookieValue ? cookieValue.pop() : '';
   };
 
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+  };
+
   return (
     <div className="navbar">
       <div className="navbar-logo">
         <img src="/logo.jpg" alt="Logo" />
       </div>
-      <div className="navbar-links">
+      <div className="navbar-menu-icon" onClick={toggleMenu}>
+        <img src="/hamburger.png" alt="Menu" />
+      </div>
+      <div className={`navbar-links ${menuOpen ? 'show' : ''}`}>
         {isLoggedIn && userRole === 'Admin' && (
           <a href="/addmovie">Add Movies</a>
-         )}
-        <a href="/MovieList">Movies</a>
-        <a href="#activities">Activities</a>
-        <a href="#sports">Sports</a>
-        <a href="#about">About Us</a>
-        <a href="/profile">Profile</a>
-        <div className="dropdown">
-          <button className="dropbtn">Canada</button>
-          <div className="dropdown-content">
-            <a href="#toronto">Toronto</a>
-            <a href="#vancouver">Vancouver</a>
-            <a href="#montreal">Montreal</a>
-          </div>
-        </div>
-        {
-          isLoggedIn ? (<a href="/profile">Profile</a>) : ("")
-        }
+        )}
+        <a href="/">Home</a>
+        <a href="/movie">Events</a>
+        <a href="/about">About Us</a>
+        <a href="/contact">Contact Us</a>
+        <a href="/faqpage">FAQ Page</a>
         {isLoggedIn ? (
-          <button className="sign-in-btn" onClick={handleLogout}>Logout</button>
+          <>
+            <a href="/profile">Profile</a>
+            <button className="sign-in-btn" onClick={handleLogout}>Logout</button>
+          </>
         ) : (
           <>
             <button className="sign-in-btn"><a href='/login'>Login</a></button>
