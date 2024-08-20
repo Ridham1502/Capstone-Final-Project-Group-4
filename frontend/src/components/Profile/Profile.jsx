@@ -4,6 +4,7 @@ import toast from "react-hot-toast";
 import "./Profile.css";
 import Cookies from 'js-cookie';
 
+
 const Profile = () => {
   const [user, setUser] = useState(null);
   const [editing, setEditing] = useState(false);
