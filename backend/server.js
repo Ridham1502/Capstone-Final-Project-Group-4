@@ -11,9 +11,9 @@ const userRoutes = require('./app/routes/user');
 const adminRoutes = require('./app/routes/admin');
 const movieRoutes = require('./app/routes/movie');
 const eventRoutes = require('./app/routes/event');
-const theaterRoutes = require('./app/routes/theaters'); 
+const theaterRoutes = require('./app/routes/theaters');
 const contactRoutes = require('./app/routes/contactRoutes');
-const faqRoutes = require('./routes/faqRoutes'); 
+const faqRoutes = require('./app/routes/faqRoutes');
 
 
 var fs = require("fs");
@@ -44,14 +44,13 @@ app.use(
 app.use(passport.initialize());
 app.use(fileUpload());
 
-app.use('/user', userRoutes); 
-app.use('/admin', adminRoutes); 
-app.use('/api', movieRoutes); 
-app.use('/api', eventRoutes); 
+app.use('/user', userRoutes);  // User routes
+app.use('/admin', adminRoutes);  // Admin routes
+app.use('/api', movieRoutes);  // Movie routes
+app.use('/api', eventRoutes);  // Event routes
 app.use('/api/theaters', theaterRoutes);
-app.use('/api', contactRoutes);
-app.use('/api', faqRoutes);
-
+app.use('/api', contactRoutes);  // Contact routes
+app.use('/api', faqRoutes);  // FAQ routes
 
 app.use((req, res, next) => {
     const error = {
@@ -69,8 +68,6 @@ app.use((err, req, res, next) => {
     res.status(status).json({ error: err.message || "Internal Server Error" });
 });
 
-// app.use(cors());
-// app.options('*', cors(corsOptions)); 
 
 server.listen(process.env.PORT || 5002, () => {
     console.log("****************************");
